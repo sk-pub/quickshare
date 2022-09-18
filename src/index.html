@@ -8,6 +8,18 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
   </head>
   <body>
-    <app-root></app-root>
+    <files-widget name="File2"></files-widget>
+    <input type="button" onclick="buttonClick()" value="Get date" />
+
+    <script>
+      function buttonClick() {
+        var el = document.getElementsByTagName('files-widget').item(0);
+
+        var date = Date.now().toString();
+        el.name = date;
+
+        el.dispatchEvent(new CustomEvent('customEvent', { detail: date }));
+      }
+    </script>
   </body>
 </html>

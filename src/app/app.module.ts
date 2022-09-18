@@ -1,12 +1,22 @@
-import { NgModule } from '@angular/core';
+import { DoBootstrap, Injector, NgModule } from '@angular/core';
+import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
+import { FilesComponent } from './files/files.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [FilesComponent],
   imports: [BrowserModule],
-  providers: [],
-  bootstrap: [AppComponent]
+  entryComponents: [FilesComponent]
 })
-export class AppModule {}
+export class AppModule implements DoBootstrap {
+  constructor(private injector: Injector) {
+    const analyticsCounter = createCustomElement(FilesComponent, { injector });
+    customElements.define('files-widget', analyticsCounter);
+  }
+
+  ngDoBootstrap() {
+    // eslint-disable-next-line no-console
+    console.log('ngDoBootstrap');
+  }
+}
