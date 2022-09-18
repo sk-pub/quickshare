@@ -1,0 +1,10 @@
+{
+  "roots": ["<rootDir>/src"],
+  "preset": "jest-preset-angular",
+  "setupFilesAfterEnv": ["<rootDir>/setup-jest.ts"],
+  "collectCoverage": true,
+  "coverageReporters": ["lcov"],
+  "coverageDirectory": "./coverage/jest",
+  "collectCoverageFrom": ["**/*.ts"],
+  "globalSetup": "jest-preset-angular/global-setup"
+}
