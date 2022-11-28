@@ -15,10 +15,13 @@
       function buttonClick() {
         var el = document.getElementsByTagName('files-widget').item(0);
 
-        var date = Date.now().toString();
-        el.name = date;
+        var date = Date.now();
+        var dateStr = date.toString();
+        el.name = dateStr;
 
-        el.dispatchEvent(new CustomEvent('customEvent', { detail: date }));
+        el.dispatchEvent(new CustomEvent('customEvent', { detail: dateStr }));
+
+        PubSub.publish('app.date', date);
       }
     </script>
   </body>

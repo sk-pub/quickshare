@@ -1,3 +1,4 @@
+import * as PubSub from 'pubsub-js';
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -24,5 +25,19 @@ export class FilesComponent implements OnInit {
   ngOnInit(): void {
     // eslint-disable-next-line no-console
     console.log('init files');
+
+    PubSub.subscribe('app.date', (event: string, date: Date) => {
+      // eslint-disable-next-line no-console
+      console.log('PubSub-js received', event, date);
+    });
+
+    PubSub.subscribe('app.response', (event: string, date: Date) => {
+      // eslint-disable-next-line no-console
+      console.log('PubSub-js received', event, date);
+    });
+  }
+
+  requestDateViaPubSub() {
+    PubSub.publish('app.request');
   }
 }
